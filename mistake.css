@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+
+        /* Navigation Menu */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        /* Header Section */
+        .header {
+            padding: 40px;
+            text-align: center;
+            background-color: #0077b6;
+            color: white;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content img {
+            width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Welcome to My Website</h1>
+        <p>Exploring HTML and CSS Design</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>About This Page</h2>
+        <p>This home page is styled using basic CSS concepts like colors, fonts, layout, and a navigation menu.</p>
+        <img src="https://via.placeholder.com/300" alt="Sample Image">
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
