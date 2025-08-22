@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CSS Styling Demo</title>
-
-    <!-- Internal CSS -->
-    <style>
-        .internal-style {
-            font-family: Arial, sans-serif;
-            color: green;
-            font-size: 18px;
-            padding: 10px;
-            background-color: #bdd4bd;
-            border: 2px solid green;
-        }
-    </style>
-
-    <!-- Link to External CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body bgcolor="">
-
-    <!-- Inline CSS -->
-    <h1 style="color:red; text-align: center;">This is styled using Inline CSS</h1>
-
-    <!-- Internal CSS -->
-    <p class="internal-style">
-        This paragraph is styled using Internal CSS.
-    </p>
-
-    <!-- External CSS -->
-    <div class="external-style">
-        This div is styled using External CSS.
-    </div>
-
-</body>
-</html>
+/* style.css - External CSS */
+.external-style {
+    background-color: #f0f8ff;
+    color: darkblue;
+    padding: 10px;
+    border: 2px dashed darkblue;
+}

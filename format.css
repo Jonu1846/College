@@ -1,0 +1,71 @@
+/* Body Styling */
+ body {
+    font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 30px;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    color: #2c3e50;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #ff4e50;
+    text-shadow: 2px 2px 6px rgba(255, 94, 98, 0.3);
+    letter-spacing: 1px;
+    margin-top: 40px;
+}
+
+/* H1 Special Styling */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    background: linear-gradient();
+    font-weight: 800;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #5d5c61;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 10px 20px;
+    border-left: 5px solid #f67280;
+    border-radius: 5px;
+}
+
+/* Links */
+a {
+    color: #6a82fb;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px dashed transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #f67280;
+    border-bottom: 2px dashed #f67280;
+}
+
+/* Blockquote Styling */
+blockquote {
+    font-style: italic;
+    color: #6c5ce7;
+    margin: 30px auto;
+    padding: 20px 30px;
+    background-color: #ffeaa7;
+    border-left: 8px solid #fd79a8;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+/* Optional: Fancy horizontal rule (if used) */
+hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+    margin: 40px 0;
+}

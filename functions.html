@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Functions and Objects</title>
+</head>
+<body>
+
+    <h1>JavaScript Functions and Objects</h1>
+    <p id="greeting"></p>
+
+    <script>
+        // 1. JavaScript Object
+        const user = {
+            firstName: "John",
+            lastName: "Solomon",
+            role: "Developer"
+        };
+
+        // 2. Function
+        // This function takes an object and returns a greeting string.
+        function createGreeting(person) {
+            return "Hello, " + person.firstName + " " + person.lastName + "! You are a " + person.role + ".";
+        }
+
+        // Call the function with the user object
+        const greetingMessage = createGreeting(user);
+
+        // Display the result
+        document.getElementById("greeting").innerHTML = greetingMessage;
+    </script>
+
+</body>
+</html>

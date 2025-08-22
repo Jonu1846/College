@@ -1,0 +1,33 @@
+//Arrays and built in objects
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrays and Built-in Objects</title>
+</head>
+<body>
+
+    <h1>JavaScript Arrays</h1>
+    <ul id="fruit-list"></ul>
+    
+    <h2>Built-in Date Object</h2>
+    <p id="datetime"></p>
+
+    <script>
+        // 1. Arrays
+        const fruits = ["Apple", "Banana", "Cherry", "Date"];
+        const fruitListElement = document.getElementById("fruit-list");
+
+        // Loop through the array and create list items
+        let listContent = "";
+        for (let i = 0; i < fruits.length; i++) {
+            listContent += "<li>" + fruits[i] + "</li>";
+        }
+        fruitListElement.innerHTML = listContent;
+
+        // 2. Built-in Objects (Date)
+        const now = new Date();
+        document.getElementById("datetime").innerHTML = "Current Date and Time: " + now.toLocaleString();
+    </script>
+
+</body>
+</html>

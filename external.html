@@ -1,38 +1,89 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CSS Styling Demo</title>
-
-    <!-- Internal CSS -->
+    <title>My Home Page</title>
     <style>
-        .internal-style {
+        body {
             font-family: Arial, sans-serif;
-            color: green;
-            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+
+        /* Navigation Menu */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        /* Header Section */
+        .header {
+            padding: 40px;
+            text-align: center;
+            background-color: #0077b6;
+            color: white;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content img {
+            width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
             padding: 10px;
-            background-color: #bdd4bd;
-            border: 2px solid green;
+            text-align: center;
         }
     </style>
-
-    <!-- Link to External CSS -->
-    <link rel="stylesheet" href="1stclass.css">
 </head>
+<body>
 
-<body bgcolor="">
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+    </div>
 
-    <!-- Inline CSS -->
-    <h1 style="color:red; text-align: center;">This is styled using Inline CSS</h1>
+    <!-- Header -->
+    <div class="header">
+        <h1>Welcome to My Website</h1>
+        <p>Exploring HTML and CSS Design</p>
+    </div>
 
-    <!-- Internal CSS -->
-    <p class="internal-style">
-        This paragraph is styled using Internal CSS.
-    </p>
+    <!-- Main Content -->
+    <div class="content">
+        <h2>About This Page</h2>
+        <p>This home page is styled using basic CSS concepts like colors, fonts, layout, and a navigation menu.</p>
+        <img src="htmlCss.jpg" alt="Sample Image" height="150" width="300">
+    </div>
 
-    <!-- External CSS -->
-    <div class="external-style">
-        This div is styled using External CSS.
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 MyWebsite. All rights reserved.</p>
     </div>
 
 </body>

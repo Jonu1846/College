@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation Form</title>
+</head>
+<body bgcolor="White">
+
+    <center><h2><u>Reservation Form</u></h2></center>
+
+    <form>
+        <table border="1" cellpadding="8" cellspacing="0" align="center" bgcolor="PeachPuff">
+            <tr bgcolor="Orange">
+                <th colspan="2">Contact Information</th>
+            </tr>
+            <tr>
+                <td><b>Name:</b></td>
+                <td><input type="text" id="name"></td>
+            </tr>
+            <tr>
+                <td><b>Email:</b></td>
+                <td><input type="email" id="email"></td>
+            </tr>
+
+            <tr bgcolor="Orange">
+                <th colspan="2">Reservation Details</th>
+            </tr>
+            <tr>
+                <td><b>Date of Reservation:</b></td>
+                <td><input type="date" id="date"></td>
+            </tr>
+            <tr>
+                <td><b>Number of People:</b></td>
+                <td><input type="number" id="people" min="1"></td>
+            </tr>
+
+            <tr>
+                <td><b>Time Slot:</b></td>
+                <td>
+                    <input type="radio" id="morning" name="time" value="Morning">
+                    <label for="morning">Morning</label><br>
+                    <input type="radio" id="afternoon" name="time" value="Afternoon">
+                    <label for="afternoon">Afternoon</label><br>
+                    <input type="radio" id="evening" name="time" value="Evening">
+                    <label for="evening">Evening</label>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Reservation Type:</b></td>
+                <td>
+                    <select id="type">
+                        <option value="dining">Dining</option>
+                        <option value="conference">Conference Room</option>
+                        <option value="banquet">Banquet Hall</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><b>Special Request:</b></td>
+                <td>
+                    <input type="checkbox" id="special" name="special">
+                    <label for="special">I have a special request</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td><b>Additional Notes:</b></td>
+                <td>
+                    <textarea id="notes" rows="4" cols="35"></textarea>
+                </td>
+            </tr>
+
+            <tr bgcolor="Orange">
+                <td colspan="2" align="center">
+                    <input type="submit" value="Reserve">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
