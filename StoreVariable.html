@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Variables Demo</title>
+</head>
+<body>
+  <h2>JavaScript Variables and Data Types</h2>
+
+  <script>
+    // String
+    let name = "Jonathan";
+
+    // Number
+    let age = 20;
+    let height = 5.9;
+
+    // Boolean
+    let isStudent = true;
+
+    // Undefined
+    let address;
+
+    // Null
+    let phoneNumber = null;
+
+    // Object
+    let person = {
+      firstName: "Jonathan",
+      lastName: "V",
+      age: 20
+    };
+
+    // Array
+    let colors = ["Red", "Green", "Blue"];
+
+    // Displaying values on the webpage
+    document.write("<b>Name:</b> " + name + "<br>");
+    document.write("<b>Age:</b> " + age + "<br>");
+    document.write("<b>Height:</b> " + height + "<br>");
+    document.write("<b>Is Student:</b> " + isStudent + "<br>");
+    document.write("<b>Address:</b> " + address + "<br>");
+    document.write("<b>Phone Number:</b> " + phoneNumber + "<br>");
+    document.write("<b>Person Object:</b> " + person.firstName + " " + person.lastName + ", Age: " + person.age + "<br>");
+    document.write("<b>Colors Array:</b> " + colors.join(", ") + "<br>");
+  </script>
+</body>
+</html>
