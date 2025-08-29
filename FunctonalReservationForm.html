@@ -2,78 +2,54 @@
 <html>
 <head>
     <title>Reservation Form</title>
-    <style>
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-    </style>
     <script>
         function validateForm() {
             var name = document.getElementById("name").value;
             var password = document.getElementById("password").value;
-
-            // Error placeholders
             var nameError = document.getElementById("nameError");
             var passwordError = document.getElementById("passwordError");
-
-            // Clear old errors
+            
             nameError.innerHTML = "";
             passwordError.innerHTML = "";
-
             var isValid = true;
 
-            // Check name length
             if (name.length < 6) {
                 nameError.innerHTML = "Name must be at least 6 characters long.";
                 isValid = false;
             }
-
-            // ✅ Regex for alphabets only
             var nameRegex = /^[A-Za-z]+$/;
             if (!nameRegex.test(name)) {
                 nameError.innerHTML = "Name must contain only alphabets.";
                 isValid = false;
             }
-
-            // Check password length
             if (password.length < 6) {
                 passwordError.innerHTML = "Password must be at least 6 characters long.";
                 isValid = false;
             }
-
             return isValid;
         }
     </script>
 </head>
 <body>
-
     <h2>Reservation Form</h2>
-
     <form onsubmit="return validateForm()">
-        <!-- Name -->
         <label for="name">Name:</label>
-        <input type="text" id="name"><br>
-        <span id="nameError" class="error"></span><br><br>
+        <input type="text" id="name">
+        <span id="nameError"></span><br><br>
 
-        <!-- Password -->
         <label for="password">Password:</label>
-        <input type="password" id="password"><br>
-        <span id="passwordError" class="error"></span><br><br>
+        <input type="password" id="password">
+        <span id="passwordError"></span><br><br>
 
-        <!-- Email -->
         <label for="email">Email:</label>
         <input type="email" id="email"><br><br>
 
-        <!-- Date -->
         <label for="date">Date of Reservation:</label>
         <input type="date" id="date"><br><br>
 
-        <!-- Number of People -->
         <label for="people">Number of People:</label>
         <input type="number" id="people" min="1"><br><br>
 
-        <!-- Time Slot -->
         <label>Time Slot:</label><br>
         <input type="radio" id="morning" name="time" value="Morning">
         <label for="morning">Morning</label><br>
@@ -82,7 +58,6 @@
         <input type="radio" id="evening" name="time" value="Evening">
         <label for="evening">Evening</label><br><br>
 
-        <!-- Reservation Type -->
         <label for="type">Reservation Type:</label>
         <select id="type">
             <option value="dining">Dining</option>
@@ -90,17 +65,13 @@
             <option value="banquet">Banquet Hall</option>
         </select><br><br>
 
-        <!-- Special Request -->
         <input type="checkbox" id="special" name="special">
         <label for="special">I have a special request</label><br><br>
 
-        <!-- Additional Notes -->
         <label for="notes">Additional Notes:</label><br>
         <textarea id="notes" rows="4" cols="40"></textarea><br><br>
 
-        <!-- Submit -->
         <input type="submit" value="Reserve">
     </form>
-
 </body>
 </html>
