@@ -29,14 +29,11 @@
                 isValid = false;
             }
 
-            // Check alphabets only
-            for (var i = 0; i < name.length; i++) {
-                var ch = name.charAt(i);
-                if (!((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))) {
-                    nameError.innerHTML = "Name must contain only alphabets.";
-                    isValid = false;
-                    break;
-                }
+            // ✅ Regex for alphabets only
+            var nameRegex = /^[A-Za-z]+$/;
+            if (!nameRegex.test(name)) {
+                nameError.innerHTML = "Name must contain only alphabets.";
+                isValid = false;
             }
 
             // Check password length

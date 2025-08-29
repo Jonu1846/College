@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Application Form</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name").value;
+      var phone = document.getElementById("phone").value;
+      var nameError = document.getElementById("nameError");
+      var phoneError = document.getElementById("phoneError");
+      nameError.innerHTML = "";
+      phoneError.innerHTML = "";
+
+      var isValid = true;
+      var nameRegex = /^[A-Za-z ]+$/; 
+      if (name.length < 6 || !nameRegex.test(name)) {
+        nameError.innerHTML = "Name must be at least 6 characters and contain only alphabets.";
+        isValid = false;
+      }
+      var phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phone)) {
+        phoneError.innerHTML = "Phone number must be 10 digits.";
+        isValid = false;
+      }
+
+      return isValid;
+    }
+  </script>
+</head>
+<body>
+
+  <h2><center><u>Student Application Form</u></center></h2>
+
+  <form onsubmit="return validateForm()">
+    <table border="1" cellpadding="10" cellspacing="0" width="600" align="center">
+
+      <tr>
+        <th colspan="2">Personal Information</th>
+      </tr>
+      <tr>
+        <td>Full Name:</td>
+        <td>
+          <input type="text" id="name" name="name" required>
+          <br><span id="nameError" class="error"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Date of Birth:</td>
+        <td><input type="date" name="dob" required></td>
+      </tr>
+      <tr>
+        <td>Gender:</td>
+        <td>
+          <input type="radio" name="gender" value="male" id="male" required>
+          <label for="male">Male</label>
+          <input type="radio" name="gender" value="female" id="female" required>
+          <label for="female">Female</label>
+          <input type="radio" name="gender" value="other" id="other" required>
+          <label for="other">Other</label>
+        </td>
+      </tr>
+
+
+      <tr>
+        <th colspan="2">Contact Details</th>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>
+          <input type="email" id="email" name="email" required>
+        </td>
+      </tr>
+      <tr>
+        <td>Phone Number:</td>
+        <td>
+          <input type="tel" id="phone" name="phone" required>
+          <br><span id="phoneError" class="error"></span>
+        </td>
+      </tr>
+
+
+      <tr>
+        <th colspan="2">Course Selection</th>
+      </tr>
+      <tr>
+        <td>Choose Course:</td>
+        <td>
+          <input type="radio" name="course" value="bca" id="bca">
+          <label for="bca">BCA</label><br>
+          <input type="radio" name="course" value="bsc" id="bsc">
+          <label for="bsc">BSC</label><br>
+          <input type="radio" name="course" value="bcom" id="bcom">
+          <label for="bcom">BCOM</label>
+        </td>
+      </tr>
+
+
+      <tr>
+        <th colspan="2">Address</th>
+      </tr>
+      <tr>
+        <td>Residential Address:</td>
+        <td><textarea name="address" rows="4" cols="30" required></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" value="Submit Application">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</body>
+</html>
