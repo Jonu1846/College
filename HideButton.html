@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show/Hide Text</title>
+</head>
+<body>
+    <!-- Text Element -->
+    <p id="myText">This is the text that will be shown or hidden.</p>
+
+    <!-- Buttons -->
+    <button onclick="hideText()">Hide Text</button>
+    <button onclick="showText()">Show Text</button>
+
+    <!-- JavaScript -->
+    <script>
+        function hideText() {
+            var text = document.getElementById("myText");
+            text.style.display = "none"; // Hides the text
+        }
+
+        function showText() {
+            var text = document.getElementById("myText");
+            text.style.display = "block"; // Shows the text
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Last List Item</title>
+</head>
+<body>
+    <h2>Delete Last Item from List</h2>
+
+    <!-- Unordered List -->
+    <ul id="myList">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Mango</li>
+        <li>Orange</li>
+    </ul>
+
+    <!-- Button -->
+    <button onclick="deleteLastItem()">Delete Last Item</button>
+
+    <!-- JavaScript -->
+    <script>
+        function deleteLastItem() {
+            // Get the list element
+            var list = document.getElementById("myList");
+
+            // Check if the list has at least one item
+            if (list.lastElementChild) {
+                // Remove the last item
+                list.removeChild(list.lastElementChild);
+            } else {
+                alert("No more items to delete!");
+            }
+        }
+    </script>
+</body>
+</html>

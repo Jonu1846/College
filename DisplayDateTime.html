@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Date and Time</title>
+</head>
+<body>
+    <h2>Current Date and Time</h2>
+
+    <!-- Paragraph where date/time will appear -->
+    <p id="dateTime">Click the button to see the current date and time.</p>
+
+    <!-- Button -->
+    <button onclick="showDateTime()">Show Date & Time</button>
+
+    <!-- JavaScript -->
+    <script>
+        function showDateTime() {
+            // Create a new Date object
+            var now = new Date();
+
+            // Get the paragraph element
+            var para = document.getElementById("dateTime");
+
+            // Display the current date and time
+            para.innerText = now.toString();
+        }
+    </script>
+</body>
+</html>

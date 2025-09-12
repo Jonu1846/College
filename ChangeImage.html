@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Mouseover Example</title>
+</head>
+<body>
+    <h2>Hover over the image to change it</h2>
+
+    <!-- Image -->
+    <img id="myImage" src="htmlImage.jpg" 
+         alt="Original Image" 
+         onmouseover="changeImage()" 
+         onmouseout="resetImage()" 
+         width="400" height="250">
+
+    <!-- JavaScript -->
+    <script>
+        function changeImage() {
+            document.getElementById("myImage").src = "JSImage.jpg";
+        }
+
+        function resetImage() {
+            document.getElementById("myImage").src = "htmlImage.jpg";
+        }
+    </script>
+</body>
+</html>

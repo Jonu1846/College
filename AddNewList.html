@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add List Item</title>
+</head>
+<body>
+    <h2>My Favorite Fruits</h2>
+
+    <!-- Unordered List -->
+    <ul id="myList">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Mango</li>
+    </ul>
+
+    <!-- Input and Button -->
+    <input type="text" id="newItem" placeholder="Enter a new item">
+    <button onclick="addItem()">Add Item</button>
+
+    <!-- JavaScript -->
+    <script>
+        function addItem() {
+            // Get the value entered by the user
+            var item = document.getElementById("newItem").value;
+
+            // Make sure the input is not empty
+            if (item === "") {
+                alert("Please enter something!");
+                return;
+            }
+
+            // Create a new <li> element
+            var li = document.createElement("li");
+
+            // Set the text of the new <li>
+            li.innerText = item;
+
+            // Add the new <li> to the unordered list
+            document.getElementById("myList").appendChild(li);
+
+            // Clear the input box
+            document.getElementById("newItem").value = "";
+        }
+    </script>
+</body>
+</html>

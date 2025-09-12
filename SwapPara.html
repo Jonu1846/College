@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Swap Paragraph Text</title>
+</head>
+<body>
+    <h2>Swap Paragraphs Example</h2>
+
+    <!-- Two paragraphs -->
+    <p id="para1">This is the first paragraph.</p>
+    <p id="para2">This is the second paragraph.</p>
+
+    <!-- Button to swap -->
+    <button onclick="swapText()">Swap Text</button>
+
+    <!-- JavaScript -->
+    <script>
+        function swapText() {
+            // Get references to the two paragraphs
+            var p1 = document.getElementById("para1");
+            var p2 = document.getElementById("para2");
+
+            // Store the text of the first paragraph in a temporary variable
+            var temp = p1.innerText;
+
+            // Swap the text
+            p1.innerText = p2.innerText;
+            p2.innerText = temp;
+        }
+    </script>
+</body>
+</html>

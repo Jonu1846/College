@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Character Counter</title>
+</head>
+<body>
+    <h2>Live Character Counter</h2>
+
+    <!-- Text Box -->
+    <textarea id="myTextBox" rows="5" cols="40" placeholder="Type something..."></textarea>
+    <p>Characters typed: <span id="charCount">0</span></p>
+
+    <!-- JavaScript -->
+    <script>
+        // Get references to the textarea and the span
+        var textBox = document.getElementById("myTextBox");
+        var countDisplay = document.getElementById("charCount");
+
+        // Add an event listener for input events
+        textBox.addEventListener("input", function() {
+            var textLength = textBox.value.length; // Count characters
+            countDisplay.innerText = textLength;   // Update the span
+        });
+    </script>
+</body>
+</html>

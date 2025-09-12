@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Heading Text</title>
+</head>
+<body>
+    <!-- Heading -->
+    <h1 id="myHeading">Hello World</h1>
+
+    <!-- Button -->
+    <button onclick="changeText()">Click Me</button>
+
+    <!-- JavaScript -->
+    <script>
+        function changeText() {
+            // Get the heading element by its ID
+            var heading = document.getElementById("myHeading");
+
+            // Change the text
+            heading.innerText = "Welcome to this File !";
+        }
+    </script>
+</body>
+</html>

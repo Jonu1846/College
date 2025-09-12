@@ -1,0 +1,98 @@
+create database Movie;
+use Movie;
+
+CREATE TABLE ACTOR (
+    Actor_ID INT PRIMARY KEY,
+    Actor_Name VARCHAR(100) NOT NULL,
+    Actor_Gend CHAR(1) CHECK (Actor_Gend IN ('M','F'))
+);
+
+INSERT INTO ACTOR VALUES
+(1, 'Amit', 'M'),
+(2, 'Neha', 'F'),
+(3, 'Ravi', 'M'),
+(4, 'Priya', 'F'),
+(5, 'Vikram', 'M');
+
+CREATE TABLE DIRECTOR (
+    Director_ID INT PRIMARY KEY,
+    Director_Name VARCHAR(100) NOT NULL,
+    Director_Phone VARCHAR(15)
+);
+
+INSERT INTO DIRECTOR VALUES
+(1, 'Karan', '9000000001'),
+(2, 'Sita',  '9000000002'),
+(3, 'Arun',  '9000000003'),
+(4, 'Meera', '9000000004'),
+(5, 'Rohan', '9000000005');
+
+CREATE TABLE MOVIES (
+    Movie_ID INT PRIMARY KEY,
+    Movie_Title VARCHAR(150) NOT NULL,
+    Movie_Year INT,
+    Movie_Lang VARCHAR(50),
+    Director_ID INT,
+    FOREIGN KEY (Director_ID) REFERENCES DIRECTOR(Director_ID)
+);
+
+INSERT INTO MOVIES VALUES
+(1, 'Love Story', 2020, 'Hindi', 1),
+(2, 'Action Hero', 2021, 'Hindi', 2),
+(3, 'Dream Girl', 2019, 'Tamil', 3),
+(4, 'Final Game', 2022, 'English', 4),
+(5, 'Super Star', 2023, 'Telugu', 5);
+
+SET SQL_SAFE_UPDATES = 0;
+
+CREATE TABLE MOVIE_CAST (
+    Actor_ID INT,
+    Movie_ID INT,
+    Role VARCHAR(100),
+    PRIMARY KEY (Actor_ID, Movie_ID),
+    FOREIGN KEY (Actor_ID) REFERENCES ACTOR(Actor_ID),
+    FOREIGN KEY (Movie_ID) REFERENCES MOVIES(Movie_ID)
+);
+
+INSERT INTO MOVIE_CAST VALUES
+(1, 1, 'Hero'),
+(2, 1, 'Heroine'),
+(3, 2, 'Villain'),
+(4, 3, 'Lead'),
+(5, 5, 'Superstar');
+
+CREATE TABLE RATING (
+    Movie_ID INT,
+    Rating DECIMAL(2,1) CHECK (Rating >= 1.0 AND Rating <= 5.0),
+    FOREIGN KEY (Movie_ID) REFERENCES MOVIES(Movie_ID)
+);
+
+INSERT INTO RATING VALUES
+(1, 4.5),
+(2, 3.8),
+(3, 4.2),
+(4, 5.0),
+(5, 4.7);
+
+SELECT M.Movie_Title, MAX(R.Rating) AS Highest_Rating
+FROM MOVIES M
+INNER JOIN RATING R ON M.Movie_ID = R.Movie_ID
+GROUP BY M.Movie_Title
+ORDER BY M.Movie_Title;
+
+SELECT A.Actor_Name, M.Movie_Title
+FROM ACTOR A
+LEFT JOIN MOVIE_CAST C ON A.Actor_ID = C.Actor_ID
+LEFT JOIN MOVIES M ON C.Movie_ID = M.Movie_ID;
+
+SELECT D.Director_Name, M.Movie_Title
+FROM DIRECTOR D
+RIGHT JOIN MOVIES M ON D.Director_ID = M.Director_ID;
+
+SELECT D.Director_Name, M.Movie_Title
+FROM DIRECTOR D
+LEFT JOIN MOVIES M ON D.Director_ID = M.Director_ID
+UNION
+SELECT D.Director_Name, M.Movie_Title
+FROM DIRECTOR D
+RIGHT JOIN MOVIES M ON D.Director_ID = M.Director_ID;

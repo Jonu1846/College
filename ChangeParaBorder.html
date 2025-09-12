@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Border Style</title>
+</head>
+<body>
+    <h2>Change Paragraph Border</h2>
+
+    <!-- Paragraph -->
+    <p id="myPara" style="border: 2px solid black; padding: 10px; width: 300px;">
+        This is a paragraph with a border.
+    </p>
+
+    <!-- Button -->
+    <button onclick="changeBorder()">Change Border Style</button>
+
+    <!-- JavaScript -->
+    <script>
+        function changeBorder() {
+            var para = document.getElementById("myPara");
+
+            // Change the border style
+            para.style.border = "5px dotted red"; // Example: thick red dotted border
+        }
+    </script>
+</body>
+</html>

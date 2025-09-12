@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Paragraph Style</title>
+</head>
+<body>
+    <!-- Paragraph -->
+    <p id="myParagraph">This is a sample paragraph.</p>
+
+    <!-- Button -->
+    <button onclick="changeStyle()">Change Style</button>
+
+    <!-- JavaScript -->
+    <script>
+        function changeStyle() {
+            // Get the paragraph element by its ID
+            var para = document.getElementById("myParagraph");
+
+            // Change color and font size
+            para.style.color = "blue";      // change text color
+            para.style.fontSize = "24px";   // change font size
+        }
+    </script>
+</body>
+</html>

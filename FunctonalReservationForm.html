@@ -1,77 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reservation Form</title>
-    <script>
-        function validateForm() {
-            var name = document.getElementById("name").value;
-            var password = document.getElementById("password").value;
-            var nameError = document.getElementById("nameError");
-            var passwordError = document.getElementById("passwordError");
-            
-            nameError.innerHTML = "";
-            passwordError.innerHTML = "";
-            var isValid = true;
+  <title>Registration Validation</title>
+  <script>
+    function validateForm() {
+      let fname = document.getElementById("fname").value;
+      let password = document.getElementById("password").value;
 
-            if (name.length < 6) {
-                nameError.innerHTML = "Name must be at least 6 characters long.";
-                isValid = false;
-            }
-            var nameRegex = /^[A-Za-z]+$/;
-            if (!nameRegex.test(name)) {
-                nameError.innerHTML = "Name must contain only alphabets.";
-                isValid = false;
-            }
-            if (password.length < 6) {
-                passwordError.innerHTML = "Password must be at least 6 characters long.";
-                isValid = false;
-            }
-            return isValid;
-        }
-    </script>
+      // Check first name: alphabets only, min 6 chars
+      let namePattern = /^[A-Za-z]+$/;
+      if (!namePattern.test(fname) || fname.length < 6) {
+        alert("First name must contain only alphabets and be at least 6 characters long.");
+        return false;
+      }
+
+      // Check password: min 6 chars
+      if (password.length < 6) {
+         
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
 </head>
 <body>
-    <h2>Reservation Form</h2>
-    <form onsubmit="return validateForm()">
-        <label for="name">Name:</label>
-        <input type="text" id="name">
-        <span id="nameError"></span><br><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password">
-        <span id="passwordError"></span><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email"><br><br>
-
-        <label for="date">Date of Reservation:</label>
-        <input type="date" id="date"><br><br>
-
-        <label for="people">Number of People:</label>
-        <input type="number" id="people" min="1"><br><br>
-
-        <label>Time Slot:</label><br>
-        <input type="radio" id="morning" name="time" value="Morning">
-        <label for="morning">Morning</label><br>
-        <input type="radio" id="afternoon" name="time" value="Afternoon">
-        <label for="afternoon">Afternoon</label><br>
-        <input type="radio" id="evening" name="time" value="Evening">
-        <label for="evening">Evening</label><br><br>
-
-        <label for="type">Reservation Type:</label>
-        <select id="type">
-            <option value="dining">Dining</option>
-            <option value="conference">Conference Room</option>
-            <option value="banquet">Banquet Hall</option>
-        </select><br><br>
-
-        <input type="checkbox" id="special" name="special">
-        <label for="special">I have a special request</label><br><br>
-
-        <label for="notes">Additional Notes:</label><br>
-        <textarea id="notes" rows="4" cols="40"></textarea><br><br>
-
-        <input type="submit" value="Reserve">
-    </form>
+  <h2>Registration Form</h2>
+  <form onsubmit="return validateForm()">
+    First Name: <input type="text" id="fname"><br><br>
+    Password: <input type="password" id="password"><br><br>
+    <input type="submit" value="Register">
+  </form>
 </body>
 </html>
