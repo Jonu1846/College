@@ -1,3 +1,343 @@
+DROP TABLE IF EXISTS STATION;
+
+CREATE TABLE STATION (
+    ID INT PRIMARY KEY,
+    CITY VARCHAR(50),
+    STATE VARCHAR(50),
+    LAT FLOAT,
+    LON FLOAT
+);
+
+-- Sample data with LAT > 39.7 for some cities
+INSERT INTO STATION (ID, CITY, STATE, LAT, LON) VALUES
+(1, 'Mumbai', 'Maharashtra', 19.0760, 72.8777),
+(2, 'Chennai', 'Tamil Nadu', 13.0827, 80.2707),
+(3, 'Kolkata', 'West Bengal', 42.5726, 88.3639),  -- Modified LAT
+(4, 'Jaipur', 'Rajasthan', 41.9124, 75.7873),      -- Modified LAT
+(5, 'Srinagar', 'Jammu and Kashmir', 44.0837, 74.7973);  -- Modified LAT
+select * from station;
+select id,city,state from station;
+SELECT * FROM STATION WHERE LAT > 39.7;
+select id, city , state from station where lon>45;
+DROP TABLE IF EXISTS STATS;
+
+CREATE TABLE STATS (
+    ID INT,
+    MONTH INT,
+    TEMP FLOAT,
+    RAIN FLOAT,
+    PRIMARY KEY (ID, MONTH),
+    FOREIGN KEY (ID) REFERENCES STATION(ID)
+);
+INSERT INTO STATS (ID, MONTH, TEMP, RAIN) VALUES
+(1, 1, 77.0, 0.2),
+(1, 7, 85.0, 15.4),
+(2, 1, 79.0, 1.1),
+(2, 7, 90.0, 12.2),
+(3, 1, 68.0, 0.5),
+(3, 7, 88.0, 11.0),
+(4, 1, 59.0, 0.0),
+(4, 7, 95.0, 3.3),
+(5, 1, 35.0, 2.4),
+(5, 7, 77.0, 5.7);
+select * from stats;
+SELECT STATS.ID, STATION.CITY, STATION.STATE, STATS.MONTH, STATS.TEMP, STATS.RAIN
+FROM STATS
+JOIN STATION ON STATS.ID = STATION.ID;
+SELECT ID, MONTH, RAIN, TEMP
+FROM STATS
+ORDER BY MONTH, RAIN DESC;
+SELECT STATS.ID, CITY, LAT, TEMP
+FROM STATS
+JOIN STATION ON STATS.ID = STATION.ID
+WHERE MONTH = 7
+ORDER BY TEMP ASC;
+SELECT STATS.ID, 
+       MAX(TEMP) AS MaxTemp, 
+       MIN(TEMP) AS MinTemp,
+       AVG(RAIN) AS AvgRain
+FROM STATS
+GROUP BY STATS.ID;
+SELECT ID, CITY, STATE
+FROM STATION
+WHERE ID IN (
+    SELECT ID
+    FROM STATS
+    GROUP BY ID
+    HAVING AVG(TEMP) > 50
+);
+CREATE VIEW CONVERTED_STATS AS
+SELECT 
+    ID,
+    MONTH,
+    (TEMP - 32) * 5 / 9 AS TEMP_CELSIUS,
+    RAIN * 2.54 AS RAIN_CM
+FROM STATS;
+ALTER TABLE STATS
+ADD COLUMN rainfall_centimeter FLOAT;
+SET SQL_SAFE_UPDATES = 0;
+UPDATE STATS
+JOIN CONVERTED_STATS ON STATS.ID = CONVERTED_STATS.ID AND STATS.MONTH = CONVERTED_STATS.MONTH
+SET STATS.rainfall_centimeter = CONVERTED_STATS.RAIN_CM;
+ALTER TABLE STATS
+DROP COLUMN RAIN;
+ALTER TABLE STATS
+MODIFY MONTH VARCHAR(20);
+use weather;
+UPDATE STATS
+SET MONTH = CASE
+    WHEN MONTH = '1' THEN 'January'
+    WHEN MONTH = '7' THEN 'July'
+END
+WHERE ID IS NOT NULL; -- Use your actual key column here
+SET SQL_SAFE_UPDATES = 0;
+select *from stats;
+DROP VIEW METRIC_LIGHT_STATS;
+
+CREATE VIEW METRIC_LIGHT_STATS AS
+SELECT 
+    ID,
+    MONTH,
+    (TEMP - 32) * 5 / 9 AS TEMP_CELSIUS,
+    RAIN * 2.54 AS RAIN_CM
+FROM STATS;
+INSERT INTO STATION (ID, CITY, LAT, longitude)
+VALUES (10, 'Paris', 48.8566, 2.3522);
+
+
+INSERT INTO STATS (ID, MONTH, TEMP, RAIN)
+VALUES (10, 'January', 20.0, 1.0);   -- 20°F = -6.7°C
+
+SELECT *
+FROM METRIC_LIGHT_STATS
+WHERE MONTH = 'January'
+  AND TEMP_CELSIUS < 0
+ORDER BY RAIN_CM;
+
+UPDATE STATS
+SET rainfall_centimeter = rainfall_centimeter + 0.0254
+WHERE ID IS NOT NULL;
+UPDATE STATS
+SET TEMP = 85.0
+WHERE ID = 44 AND MONTH = 'July';
+COMMIT;
+UPDATE STATS
+SET TEMP = 77.0
+WHERE ID = 44 AND MONTH = 'July';
+
+DROP VIEW IF EXISTS CONVERTED_STATS;
+
+CREATE VIEW CONVERTED_STATS AS
+SELECT  
+    ID,
+    MONTH,
+    (TEMP - 32) * 5 / 9 AS TEMP_CELSIUS,
+    RAIN * 2.54 AS RAIN_CM
+FROM STATS;
+use weather;
+show tables;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM STATION
+WHERE LON > 90;
+INSERT INTO STATION (ID, CITY, STATE, LAT, LON)
+VALUES (6, 'Tokyo', 'Japan', 35.6895, 139.6917);
+INSERT INTO STATION (ID, CITY, STATE, LAT, LOngitude)
+VALUES (6, 'Tokyo', 'Japan', 35.6895, 139.6917);
+
+INSERT INTO STATS (ID, MONTH, TEMP, RAIN)
+VALUES (6, 'July', 88.0, 5.0);
+
+
+DELETE FROM STATS
+WHERE MONTH = 'July'
+  AND ID IN (SELECT ID FROM STATION WHERE LON > 90);
+
+
+ALTER TABLE STATION MODIFY CITY VARCHAR(25);
+
+
+ALTER TABLE STATION CHANGE LON LONGITUDE FLOAT;
+
+use weather;
+DESCRIBE STATION;
+-- Create INSTRUCTOR table
+DROP TABLE IF EXISTS INSTRUCTOR;
+CREATE TABLE INSTRUCTOR (
+    InstructID   INT PRIMARY KEY,
+    InstructName VARCHAR(100),
+    Department   VARCHAR(50),
+    Salary       FLOAT
+);
+INSERT INTO INSTRUCTOR (InstructID, InstructName, Department, Salary) VALUES
+(1, 'Alice',   'Physics',   60000),
+(2, 'Bob',     'Math',      65000),
+(3, 'Charlie', 'Chemistry', 70000),
+(4, 'David',   'Physics',   55000),
+(5, 'Sophia',  'Math',      75000),
+(6, 'Steve',   'Biology',   50000);
+ 
+ SELECT *
+FROM INSTRUCTOR
+WHERE Salary > ALL (
+    SELECT Salary 
+    FROM INSTRUCTOR 
+    WHERE Department = 'Physics'
+);
+
+SELECT InstructName, Department
+FROM INSTRUCTOR
+WHERE InstructName LIKE '%S%';
+SELECT InstructName, Department
+FROM INSTRUCTOR i
+WHERE Salary = (
+    SELECT MAX(Salary)
+    FROM INSTRUCTOR
+    WHERE Department = i.Department
+);
+INSERT INTO INSTRUCTOR VALUES(7, 'Frank',   'Finance',   58000),
+(8, 'Emma',    'Finance',   62000),
+(9, 'Ravi',    'Computer Science', 80000),
+(10, 'Meena',  'Computer Science', 72000);
+DROP TABLE IF EXISTS STUDENT;
+CREATE TABLE STUDENT (
+    StudentID   INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Department  VARCHAR(50),
+    InstructID  INT,
+    FOREIGN KEY (InstructID) REFERENCES INSTRUCTOR(InstructID)
+);
+
+INSERT INTO STUDENT VALUES
+(101, 'Sam',   'Physics', 1),
+(102, 'John',  'Physics', 4),
+(103, 'Sara',  'Math',    2),
+(104, 'Ravi',  'Math',    5),
+(105, 'Amit',  'Biology', 6);
+
+SELECT InstructName
+FROM INSTRUCTOR
+WHERE Salary > ANY (
+    SELECT Salary FROM INSTRUCTOR WHERE Department = 'Finance'
+);
+
+SELECT *
+FROM INSTRUCTOR
+WHERE Salary < ALL (
+    SELECT Salary FROM INSTRUCTOR WHERE Department = 'Computer Science'
+)
+AND Department <> 'Computer Science';
+
+SELECT DISTINCT s1.StudentName, s1.Department
+FROM STUDENT s1
+WHERE s1.Department IN (
+    SELECT s2.Department
+    FROM STUDENT s2
+    WHERE s2.StudentName LIKE '%S%'
+);
+create database library;
+use library;
+CREATE TABLE BOOK (
+    Book_id INT PRIMARY KEY,
+    Title VARCHAR(200),
+    Publisher_Name VARCHAR(100),
+    Pub_Year INT
+);
+
+CREATE TABLE BOOK_AUTHORS (
+    Book_id INT,
+    Author_Name VARCHAR(100),
+    FOREIGN KEY (Book_id) REFERENCES BOOK(Book_id)
+);
+
+CREATE TABLE PUBLISHER (
+    Publisher_Name VARCHAR(100) PRIMARY KEY,
+    Address VARCHAR(200),
+    Phone VARCHAR(20)
+);
+
+CREATE TABLE LIBRARY_BRANCH (
+    Branch_id INT PRIMARY KEY,
+    Branch_Name VARCHAR(100),
+    Address VARCHAR(200)
+);
+
+CREATE TABLE BOOK_COPIES (
+    Book_id INT,
+    Branch_id INT,
+    No_of_Copies INT,
+    FOREIGN KEY (Book_id) REFERENCES BOOK(Book_id),
+    FOREIGN KEY (Branch_id) REFERENCES LIBRARY_BRANCH(Branch_id)
+);
+
+CREATE TABLE BOOK_LENDING (
+    Book_id INT,
+    Branch_id INT,
+    Card_No INT,
+    Date_Out DATE,
+    Due_Date DATE,
+    FOREIGN KEY (Book_id) REFERENCES BOOK(Book_id),
+    FOREIGN KEY (Branch_id) REFERENCES LIBRARY_BRANCH(Branch_id)
+);
+INSERT INTO PUBLISHER (Publisher_Name, Address, Phone) VALUES
+('Penguin Random House India', '7th Floor, Infinity Tower C, Gurugram, India', '0804190000'),
+('HarperCollins India', 'A-75, Sector 4, Noida, UP, India', '0804041000'),
+('Rupa Publications', '102, C-5, Sector 44, Gurugram, India', '0804340000'),
+('Aleph Book Company', 'D-11, Block D, Vasant Vihar, New Delhi, India', '0802614668');
+
+INSERT INTO BOOK (Book_id, Title, Publisher_Name, Pub_Year) VALUES
+(101, 'The Namesake', 'HarperCollins India', 2003),
+(102, 'The God of Small Things', 'Penguin Random House India', 1997),
+(103, 'A Suitable Boy', 'Penguin Random House India', 1993),
+(104, 'The White Tiger', 'HarperCollins India', 2008),
+(105, 'Interpreter of Maladies', 'HarperCollins India', 1999),
+(106, 'The Immortals of Meluha', 'Aleph Book Company', 2010);
+
+INSERT INTO BOOK_AUTHORS (Book_id, Author_Name) VALUES
+(101, 'Jhumpa'),
+(102, 'Arundhati '),
+(103, 'Vikram '),
+(104, 'Aravind '),
+(105, 'Jhumpa '),
+(106, 'Amish ');
+
+INSERT INTO LIBRARY_BRANCH (Branch_id, Branch_Name, Address) VALUES
+(11, 'National Library', ' West Bengal'),
+(12, 'Connemara Public Library', ' Tamil Nadu'),
+(13, 'Delhi Public Library', ' Delhi'),
+(14, 'Asiatic Society Library', 'Maharashtra');
+
+INSERT INTO BOOK_COPIES (Book_id, Branch_id, No_of_Copies) VALUES
+(101, 11, 5),
+(102, 11, 3),
+(103, 12, 4),
+(104, 12, 2),
+(105, 13, 8),
+(106, 14, 10);
+
+INSERT INTO BOOK_LENDING (Book_id, Branch_id, Card_No, Date_Out, Due_Date) VALUES
+(101, 11, 201, '2025-08-01', '2025-08-15'),
+(103, 12, 202, '2025-08-05', '2025-08-19'),
+(105, 13, 203, '2025-08-10', '2025-08-24'),
+(106, 14, 204, '2025-08-12', '2025-08-26');
+USE library;   -- replace library with your actual database name
+
+SELECT b.Book_id, b.Title, b.Publisher_Name, ba.Author_Name, 
+       bc.Branch_id, bc.No_of_Copies
+FROM BOOK b
+JOIN BOOK_AUTHORS ba ON b.Book_id = ba.Book_id
+JOIN BOOK_COPIES bc ON b.Book_id = bc.Book_id;
+
+ SELECT publisher_name, pub_year, COUNT(book_id) AS total_books
+FROM book
+GROUP BY publisher_name, pub_year
+ORDER BY pub_year;
+
+
+
+
+
+
+
 create database Movie;
 use Movie;
 

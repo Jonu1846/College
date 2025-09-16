@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Stylesheet Types</title>
+
+    <!-- Internal CSS -->
+    <style>
+        h2 {
+            color: blue;
+            font-family: Arial;
+        }
+        p.center{
+            color:red
+        }
+        h1#center{
+            color:blue
+        }
+    </style>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="CssStyling.css">
+</head>
+<body>
+
+<!-- Inline CSS -->
+<h1 style="color: red; text-align: center;">The Title - Inline CSS</h1>
+
+<!-- Internal CSS -->
+<h2>Headings - Internal CSS</h2>
+
+<!-- External CSS -->
+<div class="external-box">Content - External CSS</div>
+<p class="center">Hello</p>
+<h1 id="center" tabindex="0" onfocus="changeFunction()">hello</h1>
+
+<script>
+    function changeFunction(){
+        let ext_box=document.getElementsByClassName("external-box")[0];
+        ext_box.style.color="red";
+    }
+</script>
+</body>
+</html>

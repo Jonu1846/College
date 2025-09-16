@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Application Form</title>
+  </head>
+  <body bgcolor="SkyBlue">
+    <h2><center><u>Student Application Form</u></center></h2>
+
+    <form action="/submit" method="post">
+      <!-- Outer blue frame -->
+      <table border="0" cellpadding="5" cellspacing="0" bgcolor="DodgerBlue">
+        <tr>
+          <td>
+            <!-- Inner form -->
+            <table border="1" cellpadding="10" cellspacing="0" width="600" bgcolor="White">
+              <tr bgcolor="LightCyan">
+                <th colspan="2"><u>Personal Information</u></th>
+              </tr>
+              <tr bgcolor="AliceBlue">
+                <td>Full Name:</td>
+                <td><input type="text" name="name" required /></td>
+              </tr>
+              <tr bgcolor="AliceBlue">
+                <td>Date of Birth:</td>
+                <td><input type="date" name="dob" required /></td>
+              </tr>
+              <tr bgcolor="AliceBlue">
+                <td>Gender:</td>
+                <td>
+                  <input type="radio" name="gender" value="male" id="male" required />
+                  <label for="male">Male</label>
+                  <input type="radio" name="gender" value="female" id="female" required />
+                  <label for="female">Female</label>
+                  <input type="radio" name="gender" value="other" id="other" required />
+                  <label for="other">Other</label>
+                </td>
+              </tr>
+
+              <tr bgcolor="HoneyDew">
+                <th colspan="2"><u>Contact Details</u></th>
+              </tr>
+              <tr bgcolor="MintCream">
+                <td>Email:</td>
+                <td><input type="email" name="email" required /></td>
+              </tr>
+              <tr bgcolor="MintCream">
+                <td>Phone Number:</td>
+                <td><input type="tel" name="phone" required /></td>
+              </tr>
+
+              <tr bgcolor="PapayaWhip">
+                <th colspan="2"><u>Course Selection</u></th>
+              </tr>
+              <tr bgcolor="LemonChiffon">
+                <td>Choose Course:</td>
+                <td>
+                  <input type="radio" name="course" value="bca" id="bca" />
+                  <label for="bca">BCA</label><br />
+                  <input type="radio" name="course" value="bsc" id="bsc" />
+                  <label for="bsc">BSC</label><br />
+                  <input type="radio" name="course" value="bcom" id="bcom" />
+                  <label for="bcom">BCOM</label>
+                </td>
+              </tr>
+
+              <tr bgcolor="LavenderBlush">
+                <th colspan="2"><u>Address</u></th>
+              </tr>
+              <tr bgcolor="MistyRose">
+                <td>Residential Address:</td>
+                <td><textarea name="address" rows="4" cols="30" required></textarea></td>
+              </tr>
+
+              <tr bgcolor="LightCyan">
+                <td colspan="2" align="center">
+                  <input type="submit" value="Submit Application" />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
